@@ -1,0 +1,138 @@
+.wrapper4spaces {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    //grid-template-rows: 100px 200px 100px;
+    margin: 0 auto;
+}
+
+.wrapperLogin {
+    display: grid;
+    grid-template-rows: 3fr 2fr 1fr 1fr 1fr 1fr;
+    //grid-template-rows: 100px 200px 100px;
+    margin: 0 auto;
+}
+
+.wrapper3spaces {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 15px;
+    //grid-template-rows: 100px 200px 100px;
+    margin: 0 auto;
+}
+
+
+.wrapperLoginInputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 4px;
+    //grid-template-rows: 100px 200px 100px;
+    margin: 15px auto;
+    padding: 3px;
+}
+
+.loginInput {
+   border:0;
+   border:none;
+   border-width: 0px;
+   background-color: #ece7fd;
+}
+
+.loginButton {
+    margin-top: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 8px;
+    background-color: #ece7fd;
+    width: 100%;
+}
+
+.wrapperGridAndCartSidebar {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-row-gap: 15px;
+    //grid-template-rows: 100px 200px 100px;
+    margin: 0 auto;
+}
+
+.font-pacifico {
+    font-family: 'Pacifico', cursive;
+    font-size: 36px;
+}
+
+.font-bree {
+    font-family: 'Bree Serif', serif;
+}
+
+.font-size-small {
+    font-size: 10px;
+}
+
+.rounded-corners {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 25px;
+}
+
+.welcome-back{
+  margin-top: 15px;
+}
+
+
+.wrapperItemGrid {
+    display: grid;
+    border : black solid 2px;
+    background-color:  #e9ffb3;
+    grid-template-rows: 3fr 1fr 1fr 1fr 1fr;
+    //grid-template-rows: 100px 200px 100px;
+    margin: 0 auto;
+}
+
+.itemGrid {
+    background-color: inherit;
+}
+
+.center {
+  display : grid;
+  justify-content: center;
+}
+
+
+.fa-cog {
+    color: blue;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 1.2em;
+}
+
+.fa-user {
+    color: blue;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 1.2em;
+}
+
+.fa-power-off {
+    color: blue;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 1.2em;
+}
+
+.top {
+    background-color: white;
+}
+
+.body {
+    background-image: url('http://res.cloudinary.com/ditmua47w/image/upload/b_rgb:e1ead7,c_scale,dn_178,o_8,w_487,z_0.1/a_25/v1519649254/Captura_de_pantalla_2018-02-26_a_las_13.46.06.png');
+    background-repeat: repeat;
+}
+
+
+.DisplayPageName {
+    display : grid;
+    justify: center;
+    background-color:  #d4ff66;
+}
+
+.displayNone {
+    display : none;
+}
