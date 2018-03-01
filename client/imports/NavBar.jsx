@@ -12,9 +12,10 @@ export default class NavBar extends Component {
 
   render() {
     const { activeItem } = this.state
+    const {dynamicStyles} = this.props
 
     return (
-      <div className={this.props.navBarClassName}>
+      <div style = {dynamicStyles.navBar}>
         <Menu fluid widths={4}>
           <Menu.Item name = {Consts.FROZEN}
                     active={activeItem === Consts.FROZEN}

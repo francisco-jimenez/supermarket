@@ -1,6 +1,31 @@
 import React, { Component } from 'react';
+import Consts from './Consts'
 
 class Login extends Component {
+
+  handleLogin(){
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        Meteor.loginWithPassword(
+                {email},password,(err=>{
+                      debugger;
+                      console.log(email);
+                      console.log(password);
+                      if(err){
+                          alert('not existing user')
+                      }else{
+                          debugger;
+                      }
+                })
+        )
+  }
+
+  handleRegister(){
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    debugger;
+    Meteor.call('createUserInServer', email, password)
+  }
 
   render() {
     return (
@@ -15,21 +40,21 @@ class Login extends Component {
                <div className = 'center'>
                  user
                </div>
-               <input className= 'loginInput' type='text'/>
+               <input id='email' className= 'loginInput' type='text'/>
           </div>
             <div className = 'wrapperLoginInputs font-bree rounded-corners'>
               <div className = 'center'>
                 password
               </div>
-              <input className= 'loginInput' type='text'/>
+              <input id='password' className= 'loginInput' type='text'/>
           </div>
             <div className = 'center'>
-                 <button className = 'font-bree loginButton'>
+                 <button className = 'font-bree loginButton' onClick={this.handleLogin}>
                       Login
                  </button>
             </div>
                 <div className = 'center'>
-                    <button className = ' font-bree loginButton'>
+                    <button className = ' font-bree loginButton' onClick={this.handleRegister}>
                          Sign up
                     </button>
                 </div>

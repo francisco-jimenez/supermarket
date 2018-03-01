@@ -1,7 +1,4 @@
 import React from 'react'
-import Frozen from './Frozen'
-import Dairy from './Dairy'
-import Toiletries from './Toiletries'
 import Cart from './Cart'
 import Top from './Top'
 import DisplayPageName from './DisplayPageName'
@@ -12,21 +9,35 @@ import Consts from './Consts'
 import ItemGrid from './ItemGrid'
 import SideBar from './SideBar'
 import Login from './Login'
+import {Segment} from 'semantic-ui-react'
+import SeachComponent from './SearchComponent'
+import Footer from './Footer'
+import CssDefs from './CssDefs'
+import StickyCart from './StickyCart'
+import _ from 'lodash'
 
 
 export default class App extends React.Component{
         constructor(){
           super();
           this.state = {
-              page : Consts.FROZEN,
+              page : Consts.LOGIN ,
               navBarClassName : "",
-              addItemToCartClassName : ""
+              showNavBar : false,
+              addItemToCartClassName : "",
+              showStickyCart : false,
+              showNavBar : false
           }
-          this.itemList = Consts.itemList;
           this.changePage  = this.changePage.bind(this);
+          this.filterItemList = this.filterItemList.bind(this);
         }
 
-        filterItemList() {
+        componentWillMount() {
+          this.changePage(this.state.page)
+        }
+
+
+        filterItemList(e) {
           let items = []
           if (this.state.page === Consts.CART) {
                 items = Consts.cart;
@@ -37,23 +48,53 @@ export default class App extends React.Component{
           return items;
         }
 
+        getDynamicStyles(){
+            var dynamicStyles = {}
+            this.state.showStickyCart ?  dynamicStyles['SideBar'] = {} : dynamicStyles['SideBar'] = CssDefs.displayNone;
+            this.state.showNavBar ?  dynamicStyles['navBar'] = {} : dynamicStyles['navBar'] = CssDefs.displayNone;
+            return dynamicStyles;
+        }
+
         addItemToCart(item){
           alert('added Item: ' + item.name)
           Consts.cart.push(item);
         }
 
+        handleContextRef = contextRef => this.setState({ contextRef })
+
         changePage(page){
           switch (page) {
+              case Consts.CART:
+                  this.props.history.push(page)
+                  this.setState({
+                     showStickyCart : false,
+                     showNavBar : true,
+                     addItemToCartClassName : ""
+                  })
+                  break;
               case Consts.FROZEN:
               case Consts.DAIRY:
               case Consts.TOILETRIES:
-              case Consts.CART:
-                    this.state.navBarClassName= "";
-                    this.state.addItemToCartClassName = "";
+                    this.props.history.push(page)
+                    this.setState({
+                       showStickyCart : true,
+                       showNavBar : true,
+                       addItemToCartClassName : ""
+                    })
+                    break;
               break;
-              default:
-                    this.state.navBarClassName= "displayNone";
+              case Consts.USER:
+              case Consts.ADMIN:
+              case Consts.LOGOUT:
+              case Consts.LOGIN:
+                    this.props.history.push(page)
+                    this.setState({
+                       showStickyCart : false,
+                       showNavBar : false,
+                       addItemToCartClassName : ""
+                    })
                     this.state.addItemToCartClassName = "displayNone";
+              break;
             }
             this.setState(
                 {
@@ -63,41 +104,42 @@ export default class App extends React.Component{
         }
 
         render(){
-                let { page } = this.state
+                let { page } = this.props.params
                 let filteredItems  = this.filterItemList()
-                if(page == Consts.FROZEN) {
-                        shown = <Frozen/>
+                let dynamicStyles = this.getDynamicStyles()
+                var shown
 
-                }else if(page == Consts.DAIRY){
-                        shown = <Dairy/>
-
-                }else if(page == Consts.TOILETRIES){
-                        shown = <Toiletries/>
-
-                }else if(page == Consts.CART){
+                if(page == Consts.CART){
                         shown = <Cart/>
 
                 }else if(page == Consts.USER){
-                        shown = <User/>
+                        shown = <User history ={this.props.history} changePage ={this.changePage}/>
 
                 }else if(page == Consts.ADMIN){
-                        this.props.history.push('/admin')
-                        shown = <Admin/>
+                        shown = <Admin history ={this.props.history} changePage ={this.changePage}/>
+                }else if(page == Consts.LOGIN || Consts.LOGOUT){
+                        debugger;
+                        //shown = <Login history ={this.props.history} changePage ={this.changePage}/>
                 }
                 return  (
                             <div className = 'body'>
                                   <Top changePage ={this.changePage}></Top>
                                   <NavBar
-                                          navBarClassName = {this.state.navBarClassName}
+                                          dynamicStyles = {dynamicStyles}
                                           changePage ={this.changePage}
                                           activeItem={this.state.page}
                                   />
-                                  <DisplayPageName page = {page} ></DisplayPageName>
+
+
+
                                   {shown}
                                   <div className = 'wrapperGridAndCartSidebar'>
-                                      <ItemGrid addItemToCartClassName = {this.state.addItemToCartClassName} addItemToCart = {this.addItemToCart} itemList = {filteredItems}> </ItemGrid>
-                                      <SideBar/>
+                                    <ItemGrid addItemToCartClassName = {this.state.addItemToCartClassName} addItemToCart = {this.addItemToCart} itemList = {filteredItems}> </ItemGrid>
+                                    <div ref={this.handleContextRef} style= {dynamicStyles.SideBar}>
+                                            <StickyCart/>
+                                    </div>
                                   </div>
+                                  <Footer></Footer>
                             </div>
                 )
         }

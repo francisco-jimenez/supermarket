@@ -5,8 +5,7 @@ import Consts from './Consts'
 export default class Admin extends React.Component{
 
         handleClick(){
-          this.props.history.push('/supermarket')
-
+          this.props.changePage(Consts.FROZEN);
         }
 
         render(){
