@@ -9,7 +9,7 @@ import { Router, Route, browserHistory } from 'react-router';
 export const routes    = () => (
   <Router history     = {browserHistory}>
       <Route path   = "/"                 component = {App}/>
-      <Route path   = {Consts.LOGOUT}       component = {App}/>
       <Route path   = "/:page"            component = {App}/>
+      <Route path   = {Consts.LOGOUT}       component = {App}/>
   </Router>
 )

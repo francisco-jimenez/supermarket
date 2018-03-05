@@ -14,6 +14,7 @@ import SeachComponent from './SearchComponent'
 import Footer from './Footer'
 import CssDefs from './CssDefs'
 import StickyCart from './StickyCart'
+import DropDownOrderItems from './DropDownOrderItems'
 import _ from 'lodash'
 
 
@@ -22,36 +23,101 @@ export default class App extends React.Component{
           super();
           this.state = {
               page : Consts.LOGIN ,
-              navBarClassName : "",
               showNavBar : false,
               addItemToCartClassName : "",
               showStickyCart : false,
-              showNavBar : false
+              showNavBar : false,
+              items : Consts.itemList
           }
           this.changePage  = this.changePage.bind(this);
           this.filterItemList = this.filterItemList.bind(this);
+          this.orderItemList = this.orderItemList.bind(this);
         }
 
         componentWillMount() {
           this.changePage(this.state.page)
         }
 
+        orderItemList(orderBy) {
+          if(orderBy) {
+            alert(orderBy)
+          var items = this.state.items;
+          switch (orderBy) {
+            case Consts.orderBy.A_Z:
+              // sort by name
+                items = items.sort(function(a, b) {
+                                      var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                                      var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                                      if (nameA < nameB) {
+                                          return -1;
+                                      }
+                                      if (nameA > nameB) {
+                                          return 1;
+                                      }
+                                      return 0;}
+                                    )
 
-        filterItemList(e) {
+              break;
+              case Consts.orderBy.Z_A:
+                        items = items.sort(function(a, b) {
+                                            var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                                            var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                                            if (nameA > nameB) {
+                                                return -1;
+                                            }
+                                            if (nameA < nameB) {
+                                                return 1;
+                                            }
+                                            return 0;}
+                                          )
+              break;
+              case Consts.orderBy.PRICEASC:
+                // sort by name
+                  items = items.sort(function(a, b) {
+                                        var priceA = Number(a.price); // ignore upper and lowercase
+                                        var priceB = Number(b.price); // ignore upper and lowercase
+                                        if (priceA < priceB) {
+                                            return -1;
+                                        }
+                                        if (priceA > priceB) {
+                                            return 1;
+                                        }
+                                        return 0;}
+                                      )
+
+                break;
+                case Consts.orderBy.PRICEDESC:
+                  // sort by name
+                    items = items.sort(function(a, b) {
+                                          var priceA = Number(a.price); // ignore upper and lowercase
+                                          var priceB = Number(b.price); // ignore upper and lowercase
+                                          if (priceA > priceB) {
+                                              return -1;
+                                          }
+                                          if (priceA < priceB) {
+                                              return 1;
+                                          }
+                                          return 0;}
+                                        )
+
+                  break;
+          }
+            this.setState({items: items});
+          }
+        }
+        filterItemList() {
           let items = []
           if (this.state.page === Consts.CART) {
                 items = Consts.cart;
           } else {
                 items = Consts.itemList.filter(item => item.category == this.state.page);
           }
-
           return items;
         }
 
         getDynamicStyles(){
             var dynamicStyles = {}
             this.state.showStickyCart ?  dynamicStyles['SideBar'] = {} : dynamicStyles['SideBar'] = CssDefs.displayNone;
-            this.state.showNavBar ?  dynamicStyles['navBar'] = {} : dynamicStyles['navBar'] = CssDefs.displayNone;
             return dynamicStyles;
         }
 
@@ -93,7 +159,6 @@ export default class App extends React.Component{
                        showNavBar : false,
                        addItemToCartClassName : ""
                     })
-                    this.state.addItemToCartClassName = "displayNone";
               break;
             }
             this.setState(
@@ -106,6 +171,7 @@ export default class App extends React.Component{
         render(){
                 let { page } = this.props.params
                 let filteredItems  = this.filterItemList()
+                alert('RENDER')
                 let dynamicStyles = this.getDynamicStyles()
                 var shown
 
@@ -118,17 +184,20 @@ export default class App extends React.Component{
                 }else if(page == Consts.ADMIN){
                         shown = <Admin history ={this.props.history} changePage ={this.changePage}/>
                 }else if(page == Consts.LOGIN || Consts.LOGOUT){
-                        debugger;
                         //shown = <Login history ={this.props.history} changePage ={this.changePage}/>
                 }
                 return  (
                             <div className = 'body'>
                                   <Top changePage ={this.changePage}></Top>
                                   <NavBar
-                                          dynamicStyles = {dynamicStyles}
+                                          showNavBar = {this.state.showNavBar}
                                           changePage ={this.changePage}
                                           activeItem={this.state.page}
                                   />
+                                <DisplayPageName page={this.state.page}></DisplayPageName>
+                                <div className = 'orderAndSearchWrapper'>
+                                  <DropDownOrderItems orderItemList = {this.orderItemList}/>
+                                </div>
 
 
 

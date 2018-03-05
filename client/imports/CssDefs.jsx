@@ -12,3 +12,7 @@ export const wrapperStickyCartGridStyle = {
 export const displayNone = {
    display: 'none'
 }
+
+export const orderAndSearchWrapper = {
+   display: 'inline'
+}

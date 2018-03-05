@@ -14,7 +14,7 @@ class Login extends Component {
                       if(err){
                           alert('not existing user')
                       }else{
-                          debugger;
+                          this.props.history.push('/'+Consts.FROZEN)
                       }
                 })
         )
@@ -46,15 +46,15 @@ class Login extends Component {
               <div className = 'center'>
                 password
               </div>
-              <input id='password' className= 'loginInput' type='text'/>
+              <input id='password' type='password' className= 'loginInput' type='text'/>
           </div>
             <div className = 'center'>
-                 <button className = 'font-bree loginButton' onClick={this.handleLogin}>
+                 <button className = 'font-bree loginButton' onClick={this.handleLogin.bind(this)}>
                       Login
                  </button>
             </div>
                 <div className = 'center'>
-                    <button className = ' font-bree loginButton' onClick={this.handleRegister}>
+                    <button className = ' font-bree loginButton' onClick={this.handleRegister.bind(this)}>
                          Sign up
                     </button>
                 </div>

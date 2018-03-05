@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Input, Menu, Segment } from 'semantic-ui-react'
 import Consts from './Consts'
+import CssDefs from './CssDefs'
 
 export default class NavBar extends Component {
   state = { activeItem: null }
@@ -10,9 +11,17 @@ export default class NavBar extends Component {
     this.props.changePage(name);
   }
 
+  getDynamicStyles(){
+      var dynamicStyles = {}
+      this.props.showNavBar ?  dynamicStyles['navBar'] = {} : dynamicStyles['navBar'] = CssDefs.displayNone;
+      return dynamicStyles;
+  }
+
+
+
   render() {
     const { activeItem } = this.state
-    const {dynamicStyles} = this.props
+    const   dynamicStyles = this.getDynamicStyles()
 
     return (
       <div style = {dynamicStyles.navBar}>

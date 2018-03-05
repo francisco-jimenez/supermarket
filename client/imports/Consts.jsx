@@ -1,12 +1,12 @@
-export const FROZEN = 'FROZEN';
-export const DAIRY = 'DAIRY';
-export const TOILETRIES = 'TOILETRIES'
-export const CART = 'CART'
-export const ADMIN = 'ADMIN'
-export const USER = 'USER'
-export const LOGOUT = 'LOGOUT'
-export const LOGIN = 'LOGIN'
-export const REGISTER = 'REGISTER'
+export const FROZEN = 'Frozen';
+export const DAIRY = 'Dairy';
+export const TOILETRIES = 'Toiletries'
+export const CART = 'Cart'
+export const ADMIN = 'Admin'
+export const USER = 'User'
+export const LOGOUT = 'Logout'
+export const LOGIN = 'Login'
+export const REGISTER = 'Register'
 
 export const cart = []
 
@@ -30,13 +30,20 @@ export const displayNone = {
     display : 'none'
 }
 
+export const orderBy = {
+    PRICEASC : 1,
+    PRICEDESC : 2,
+    A_Z   : 3,
+    Z_A   : 4
+}
+
 export var itemList = [
         {
           "_id" :1,
           "name": " Frozen cod from Sweden freh ...............",
           "price": "100",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_fish.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
@@ -46,7 +53,7 @@ export var itemList = [
           "name": " Frozen tuna",
           "price": "200",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561167/frozen_stuff.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
@@ -56,7 +63,7 @@ export var itemList = [
           "name": "Salmon",
           "price": "200",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
@@ -66,7 +73,7 @@ export var itemList = [
           "name": "Salmon re",
           "price": "180",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
@@ -76,137 +83,137 @@ export var itemList = [
           "name": "Milk",
           "price": "180",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519597542/353992011_0_150x150.jpg",
-          "category": "DAIRY",
+          "category": "Dairy",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "milk"
         },
         {
           "_id" :6,
-          "name": "Salmon re",
+          "name": "Salfmon re",
           "price": "180",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
-          "category": "TOILETRIES",
+          "category": "Toiletries",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
         },
         {
-          "_id" :1,
-          "name": " Frozen cod from Sweden freh ...............",
+          "_id" :10,
+          "name": " Frozenf cod from Sweden freh ...............",
           "price": "100",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_fish.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
         },
         {
-          "_id" :2,
-          "name": " Frozen tuna",
+          "_id" :12,
+          "name": " Frofzen tuna",
           "price": "200",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561167/frozen_stuff.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
         },
         {
-          "_id" :3,
-          "name": "Salmon",
+          "_id" :13,
+          "name": "Salmddon",
           "price": "200",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
         },
         {
-          "_id" :4,
-          "name": "Salmon re",
+          "_id" :14,
+          "name": "Salmfon re",
           "price": "180",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
         },
         {
-          "_id" :5,
-          "name": "Milk",
+          "_id" :15,
+          "name": "Mddilk",
           "price": "180",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519597542/353992011_0_150x150.jpg",
-          "category": "DAIRY",
+          "category": "Dairy",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "milk"
         },
         {
-          "_id" :6,
+          "_id" :16,
           "name": "Salmon re",
-          "price": "180",
+          "price": "1822",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
-          "category": "TOILETRIES",
+          "category": "Toiletries",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
         },
         {
-          "_id" :1,
-          "name": " Frozen cod from Sweden freh ...6............",
+          "_id" :111,
+          "name": " Frozend cddod from Sweden freh ...6............",
           "price": "100",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_fish.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
         },
         {
-          "_id" :2,
-          "name": " Frozen tunae",
+          "_id" :211,
+          "name": " d tunae",
           "price": "200",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561167/frozen_stuff.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
         },
         {
-          "_id" :3,
-          "name": "Salmorn",
+          "_id" :311,
+          "name": "1Salmorn",
           "price": "200",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
         },
         {
-          "_id" :4,
+          "_id" :4111,
           "name": "Salmonf re",
           "price": "180",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
-          "category": "FROZEN",
+          "category": "Frozen",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
         },
         {
-          "_id" :5,
+          "_id" :115,
           "name": "Milrk",
-          "price": "180",
+          "price": "184",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519597542/353992011_0_150x150.jpg",
-          "category": "DAIRY",
+          "category": "Dairy",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "milk"
         },
         {
-          "_id" :6,
+          "_id" :6111,
           "name": "Salmron re",
-          "price": "180",
+          "price": "184",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
-          "category": "TOILETRIES",
+          "category": "Toiletries",
           "stock" : 10,
           "unitsOnCart" : 0,
           "subcategory": "fish"
