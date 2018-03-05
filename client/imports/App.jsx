@@ -10,11 +10,11 @@ import ItemGrid from './ItemGrid'
 import SideBar from './SideBar'
 import Login from './Login'
 import {Segment} from 'semantic-ui-react'
-import SeachComponent from './SearchComponent'
 import Footer from './Footer'
 import CssDefs from './CssDefs'
 import StickyCart from './StickyCart'
 import DropDownOrderItems from './DropDownOrderItems'
+import Search from './Search'
 import _ from 'lodash'
 
 
@@ -31,11 +31,19 @@ export default class App extends React.Component{
           }
           this.changePage  = this.changePage.bind(this);
           this.filterItemList = this.filterItemList.bind(this);
+          this.searchItems = this.searchItems.bind(this);
           this.orderItemList = this.orderItemList.bind(this);
         }
 
         componentWillMount() {
           this.changePage(this.state.page)
+        }
+
+        searchItems(e){
+          var items = this.state.items;
+          items = this.filterItemList(this.state.page);
+          items = items.filter(item => item.name.toUpperCase().includes(e.target.value.toUpperCase()));
+          this.setState({items:items})
         }
 
         orderItemList(orderBy) {
@@ -105,12 +113,13 @@ export default class App extends React.Component{
             this.setState({items: items});
           }
         }
-        filterItemList() {
+        filterItemList(page) {
           let items = []
-          if (this.state.page === Consts.CART) {
+          if (page === Consts.CART) {
                 items = Consts.cart;
           } else {
-                items = Consts.itemList.filter(item => item.category == this.state.page);
+                var currentItems = Consts.itemList;
+                items = currentItems.filter(item => item.category == page);
           }
           return items;
         }
@@ -161,17 +170,17 @@ export default class App extends React.Component{
                     })
               break;
             }
+            var items = this.filterItemList(page)
             this.setState(
                 {
-                  page : page
+                  page : page,
+                  items : items
                 }
             )
         }
 
         render(){
                 let { page } = this.props.params
-                let filteredItems  = this.filterItemList()
-                alert('RENDER')
                 let dynamicStyles = this.getDynamicStyles()
                 var shown
 
@@ -197,13 +206,14 @@ export default class App extends React.Component{
                                 <DisplayPageName page={this.state.page}></DisplayPageName>
                                 <div className = 'orderAndSearchWrapper'>
                                   <DropDownOrderItems orderItemList = {this.orderItemList}/>
+                                  <Search searchItems = {this.searchItems}></Search>
                                 </div>
 
 
 
                                   {shown}
                                   <div className = 'wrapperGridAndCartSidebar'>
-                                    <ItemGrid addItemToCartClassName = {this.state.addItemToCartClassName} addItemToCart = {this.addItemToCart} itemList = {filteredItems}> </ItemGrid>
+                                    <ItemGrid addItemToCartClassName = {this.state.addItemToCartClassName} addItemToCart = {this.addItemToCart} itemList = {this.state.items}> </ItemGrid>
                                     <div ref={this.handleContextRef} style= {dynamicStyles.SideBar}>
                                             <StickyCart/>
                                     </div>

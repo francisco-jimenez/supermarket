@@ -59,7 +59,7 @@ export var itemList = [
           "subcategory": "fish"
         },
         {
-          "_id" :3,
+          "_id" :346,
           "name": "Salmon",
           "price": "200",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
@@ -69,7 +69,7 @@ export var itemList = [
           "subcategory": "fish"
         },
         {
-          "_id" :4,
+          "_id" :374,
           "name": "Salmon re",
           "price": "180",
           "imgSource": "http://res.cloudinary.com/ditmua47w/image/upload/v1519561168/frozen_pie.jpg",
